@@ -24,4 +24,6 @@ jobs:
           curl http://localhost:3000/hello     
 
       - name: build docker image
-        run: docker build -t hello-api .
+        run: |
+          docker build -t hello-api .
+          docker run -d -p 3000:3000 --name hello-api hello-api
