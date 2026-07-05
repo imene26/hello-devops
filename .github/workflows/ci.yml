@@ -17,13 +17,9 @@ jobs:
       - name: install dependencies
         run: npm install
 
-      - name: run application
-        run: |
-          node app/server.js & 
-          sleep 5
-          curl http://localhost:3000/hello     
-
-      - name: build docker image
+      - name: run docker container
         run: |
           docker build -t hello-api .
           docker run -d -p 3000:3000 --name hello-api hello-api
+          sleep 5
+          curl http://localhost:3000/hello     
