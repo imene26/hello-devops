@@ -21,6 +21,9 @@ jobs:
       - name: build docker image
         run: docker build -t hello-api .
 
+      - name: start local registry
+        run: docker run -d -p 5000:5000 --name registry registry:2
+
       - name: tag image
         run: docker tag hello-api localhost:5000/hello-api:v2
 
