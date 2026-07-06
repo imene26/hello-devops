@@ -17,9 +17,18 @@ jobs:
       - name: install dependencies
         run: npm install
 
+
+      - name: build docker image
+        run: docker build -t hello-api .
+
+      - name: tag image
+        run: docker tag hello-api localhost:5000/hello-api:v2
+
+      - name: push image
+        run: docker push localhost:5000/hello-api:v2
+
       - name: run docker container
         run: |
-          docker build -t hello-api .
-          docker run -d -p 3000:3000 --name hello-api hello-api
+          docker run -d -p 3000:3000 --name hello-api localhost:5000/hello-api:v2
           sleep 5
           curl http://localhost:3000/hello     
