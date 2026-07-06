@@ -19,7 +19,7 @@ jobs:
 
 
       - name: build docker image
-        run: docker build -t hello-api .
+        run: docker build --no-cache -t hello-api .
 
       - name: start local registry
         run: docker run -d -p 5000:5000 --name registry registry:2
