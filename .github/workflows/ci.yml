@@ -17,9 +17,9 @@ jobs:
       - name: install dependencies
         run: npm install
 
-
       - name: build docker image
         run: docker build --no-cache -t hello-api .
+
 
       - name: start local registry
         run: docker run -d -p 5000:5000 --name registry registry:2
@@ -29,9 +29,13 @@ jobs:
 
       - name: push image
         run: docker push ${{secrets.ECR_URL}}/hello-api:v3
+   
+      - name: delete old container
+        run: docker rm -f hello-api|| true
 
       - name: run docker container
         run: |
-          docker run -d -p 3000:3000 --name hello-api ${{secrets.ECR_URL}}/hello-api:v3
+          docker run -d -p 3000:3000 --name hello-api ${{secrets.ECR_URL}}/hello-api:v3 
           sleep 5
+          docker logs hello-api
           curl http://localhost:3000/hello     
