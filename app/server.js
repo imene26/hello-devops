@@ -3,8 +3,7 @@ const app = express();
 
 app.get("/hello", (req, res) => {
   res.json({
-	  message: "Hello I'am imene from tunisa",
-    version: "1.0.0"
+	  message: "Hello I'am imene from tunisa"
   });
 });
 
