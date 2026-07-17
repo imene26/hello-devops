@@ -51,5 +51,9 @@ jobs:
           kubectl apply -f kubernetes/deployment.yaml
           kubectl apply -f kubernetes/service.yaml
           kubectl apply -f kubernetes/ingress.yaml
-          curl http://node.example.com/hello 
+        
+      - name: Test DNS
+        run: |
+          nslookup node.example.com
+          ping -c 3 node.example.com
               
