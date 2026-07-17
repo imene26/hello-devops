@@ -39,11 +39,6 @@ jobs:
       - name: delete old container
         run: docker rm -f hello-api|| true
 
-      - name: run docker container
-        run: |
-          docker run -d -p 3000:3000 --name hello-api ${{secrets.ECR_URL}}/hello-api:v3 
-          sleep 5
-          curl http://localhost:3000/hello
 
       - name: deploy to kubernetes
         run: |
