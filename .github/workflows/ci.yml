@@ -39,6 +39,12 @@ jobs:
       - name: delete old container
         run: docker rm -f hello-api|| true
 
+      - name: Start Minikube
+        uses: medyagh/setup-minikube@latest
+
+      - name: Check cluster
+        run: |
+          kubectl get nodes
 
       - name: deploy to kubernetes
         run: |
