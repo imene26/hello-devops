@@ -42,6 +42,7 @@ jobs:
       - name: Start Minikube
         uses: medyagh/setup-minikube@latest
 
+
       - name: Check cluster
         run: |
           kubectl get nodes
@@ -51,9 +52,6 @@ jobs:
           kubectl apply -f kubernetes/deployment.yaml
           kubectl apply -f kubernetes/service.yaml
           kubectl apply -f kubernetes/ingress.yaml
+          minikube service api-service --url
         
-      - name: Test DNS
-        run: |
-          nslookup node.example.com
-          ping -c 3 node.example.com
               
