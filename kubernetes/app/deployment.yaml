@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hello-api
-          image: localhost:5000/hello-api:v3
+          image: nginx:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 3000
