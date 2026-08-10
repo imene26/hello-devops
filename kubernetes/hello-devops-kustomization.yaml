@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: hello-devops
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./kubernetes/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: hello-devops
+  targetNamespace: test-flux
